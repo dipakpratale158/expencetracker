@@ -11,6 +11,8 @@ const Header = (props) => {
 
 
   const logoutHandler = ()=> {
+    localStorage.removeItem('idToken');
+
     alert("Do you want Logout")
     history('login')
   };
