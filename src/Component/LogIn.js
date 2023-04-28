@@ -11,7 +11,7 @@ export default function LogIn() {
         e.preventDefault();
         const enteredEmail = emailInputref.current.value;
 
-        fetch('https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyDh86gDOATmnQKrj5jnVFM7Ck9PbeaR0W0',{
+        fetch('https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyBxmN7U0TnbCcdz-VjYAe4liAz7oYG6wlQ',{
             method:"POST",
             body:JSON.stringify({
                 requestType:"PASSWORD_RESET",
@@ -46,7 +46,7 @@ export default function LogIn() {
     //console.log(enteredEmail,enteredpassword)
 
     fetch(
-      "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDh86gDOATmnQKrj5jnVFM7Ck9PbeaR0W0",
+      "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBxmN7U0TnbCcdz-VjYAe4liAz7oYG6wlQ",
       {
         method: "POST",
         body: JSON.stringify({
