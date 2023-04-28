@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-
+import Expense from '../Expense/Expense';
 const Welcome = () => {
   const [isVerified, setIsVerified] = useState(false);
 
@@ -45,16 +45,16 @@ const Welcome = () => {
       });
   };
 
-  // useEffect(() => {
-  //   if (isVerified) {
-  //     alert("Your email has been verified successfully!")
+  useEffect(() => {
+    if (isVerified) {
+      alert("Your email has been verified successfully!")
 
-  //     const timer = setTimeout(() => {
-  //       setIsVerified(false);
-  //     }, 1000);
-  //     return () => clearTimeout(timer);
-  //   }
-  // }, [isVerified]);
+      const timer = setTimeout(() => {
+        setIsVerified(false);
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [isVerified]);
 
   return (
     <div>
@@ -75,6 +75,7 @@ const Welcome = () => {
       </p>
 
       <hr />
+      <div style={{padding:'2%'}}><Expense/></div>
     </div>
   );
 };
