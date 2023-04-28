@@ -7,37 +7,38 @@ export default function LogIn() {
   const emailInputref = useRef();
   const passwordInputref = useRef();
 
-    const handleForgotPassword = (e) => {
-        e.preventDefault();
-        const enteredEmail = emailInputref.current.value;
+  const handleForgotPassword = (e) => {
+    e.preventDefault();
+    const enteredEmail = emailInputref.current.value;
 
-        fetch('https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyBxmN7U0TnbCcdz-VjYAe4liAz7oYG6wlQ',{
-            method:"POST",
-            body:JSON.stringify({
-                requestType:"PASSWORD_RESET",
-                email:enteredEmail
-            }),
-            headers:{
-                'Content-Type':'application/json'
-            }
-        }).then((res)=>{
-            if(res.ok){
-                return res.json();
-            }else{
-                return res.json().then((data)=>{
-                    if(data && data.error && data.error.message){
-                        let errMessage = "Authentication Failed, " + data.error.message;
-                        throw new Error(errMessage);
-                    }
-                })
-            }
-        }).then((data)=>{
-            console.log(data);
-            console.log("Forgrt Password  Link are Sending Sussesfully")
-        }).catch((err)=>{
-            alert(err.meassage);
-        })
-  }
+    fetch('https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyBxmN7U0TnbCcdz-VjYAe4liAz7oYG6wlQ',{
+        method:"POST",
+        body:JSON.stringify({
+            requestType:"PASSWORD_RESET",
+            email:enteredEmail
+        }),
+        headers:{
+            'Content-Type':'application/json'
+        }
+    }).then((res)=>{
+        if(res.ok){
+            alert("Your forgot password link has been sent to your email.");
+            return res.json();
+        }else{
+            return res.json().then((data)=>{
+                if(data && data.error && data.error.message){
+                    let errMessage = "Authentication Failed, " + data.error.message;
+                    throw new Error(errMessage);
+                }
+            })
+        }
+    }).then((data)=>{
+        console.log(data);
+        console.log("Forget Password Link has been sent successfully.")
+    }).catch((err)=>{
+        alert(err.meassage);
+    })
+};
   const submitHandler = (e) => {
     e.preventDefault();
     const enteredEmail = emailInputref.current.value;
